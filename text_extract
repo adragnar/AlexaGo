@@ -1,0 +1,39 @@
+#include <Python.h>
+
+def extract_initial_info(text_string) :
+    text_string = text_string.split("Predicted in")[1]
+    text_string = text_string.split("seconds. \n")[1]
+    return text_string
+
+def create_dictionary(text_string) :
+    text_string = extract_initial_info(text_string)
+    text_string = text_string.split("\n")
+
+    for i in range(0, len(text_string)) :
+         a = text_string[i].replace("%", ": ")
+         b = a.split(":")
+         text_string[i] = b
+
+    dictionary_list = []
+    for i in range (0, len(text_string)) :
+        diction = {}
+        diction["name"] = text_string[i][0]
+        diction["prob"] = int((text_string[i][1]))
+        diction["box"] =  text_string[i][2]
+
+
+        a = diction["box"].replace("(","")
+        a = a.replace(")", "")
+        a = a.replace(" ","")
+        a = a.split(",")
+        for i in range(0, len(a)) :
+            a[i] = int(a[i])
+        diction["box"] = a
+        dictionary_list.append(diction)
+
+    return dictionary_list
+
+if __name__ == '__main__':
+    text_string = 'Predicted in 7.8883 seconds. \n wild horse: 50% (250,197, 432, 334)\n wild horse: 50% (250,197, 432, 334)'
+    text_string = create_dictionary(text_string)
+    print(3)
