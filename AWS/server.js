@@ -1,10 +1,15 @@
 var http = require("http");
+var fs = require("fs");
 var express = require("express");
 var url = require('url');
 var PythonShell = require("python-shell");
+var bp = require("body-parser");
 
 var port = 3000;
 var app = express();
+
+app.use(bp.urlencoded({extended : true}));
+app.use(bp.json({limit: "50mb"}));
 
 app.post("/post_data", function(req, res) {
   var request_url = url.parse(req.url, true);
@@ -12,15 +17,22 @@ app.post("/post_data", function(req, res) {
 
   res.writeHead(200, {"Content-Type": "application/json"});
 
+  var img = req.body.img;
+  fs.writeFile("../yolo-9000/darknet/data/tmp.png", img.replace(/^data:image\/png;base64,/, ""), 'base64', function(err) {
+    if(err) console.log(err);
+  });
+
   PythonShell.run("run.py", function(pyerr, pyres) {
     if(pyerr) {
       console.log(pyerr);
       res.end(JSON.stringify({"status" : "failure"}));
     }
 
-    console.log(pyres);
+    var data = JSON.parse(pyres[0]);
+    console.log(data);
     res.end(JSON.stringify({
-      "status" : "success"
+      "status" : "success",
+      "data" : data
     }));
   });
 
