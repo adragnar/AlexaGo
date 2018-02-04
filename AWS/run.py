@@ -1,15 +1,18 @@
+import os
 import subprocess
 
+os.chdir("../yolo-9000/darknet/")
+
 cmd = [
-    "../yolo-9000/darknet/darknet",
+    "./darknet",
     "detector",
     "test",
-    "../yolo-9000/darknet/cfg/combine9k.data",
-    "../yolo-9000/darknet/cfg/yolo9000.cfg"
-    "../yolo-9000/yolo9000-weights/yolo9000.weights",
-    "~/Desktop/yuka.jpg",
+    "cfg/combine9k.data",
+    "cfg/yolo9000.cfg",
+    "../yolo9000-weights/yolo9000.weights",
+    "data/horses.jpg",
     "-out",
-    "~/Desktop/yuka-prediction"
+    "results/horses-prediction"
 ]
 
 proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
