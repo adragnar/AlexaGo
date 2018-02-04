@@ -15,6 +15,6 @@ cmd = [
     "results/horses-prediction"
 ]
 
-proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 output = proc.stdout.read()
-print(output)
+print(output.decode("utf-8"))

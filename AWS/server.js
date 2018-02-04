@@ -15,6 +15,7 @@ app.post("/post_data", function(req, res) {
   PythonShell.run("run.py", function(pyerr, pyres) {
     if(pyerr) {
       console.log(pyerr);
+      //res.end(JSON.stringify({"status" : "failure"}));
     }
 
     console.log(pyres);
