@@ -18,23 +18,28 @@ app.post("/post_data", function(req, res) {
   res.writeHead(200, {"Content-Type": "application/json"});
 
   var img = req.body.img;
-  fs.writeFile("../yolo-9000/darknet/data/tmp.png", img.replace(/^data:image\/png;base64,/, ""), 'base64', function(err) {
-    if(err) console.log(err);
-  });
-
-  PythonShell.run("run.py", function(pyerr, pyres) {
-    if(pyerr) {
-      console.log(pyerr);
+  fs.writeFile("../yolo-9000/darknet/data/tmp.png", img, 'base64', function(err) {
+    if(err) {
+      console.log(err);
       res.end(JSON.stringify({"status" : "failure"}));
-    }
+    } else {
+      PythonShell.run("run.py", function(pyerr, pyres) {
+        if(pyerr) {
+          console.log(pyerr);
+          res.end(JSON.stringify({"status" : "failure"}));
+        }
 
-    var data = JSON.parse(pyres[0]);
-    console.log(data);
-    res.end(JSON.stringify({
-      "status" : "success",
-      "data" : data
-    }));
+        var data = JSON.parse(pyres[0]);
+        console.log(data);
+        res.end(JSON.stringify({
+          "status" : "success",
+          "data" : data
+        }));
+      });
+    }
   });
+
+
 
 
   // var tag = req.body.tag;
