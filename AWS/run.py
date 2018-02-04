@@ -24,7 +24,7 @@ cmd = [
     "detect",
     "cfg/tiny-yolo.cfg",
     "tiny-yolo.weights",
-    "data/tmp.jpg",
+    "data/tmp.png",
     "-out",
     "results/tmp-prediction"
     # "./darknet",
