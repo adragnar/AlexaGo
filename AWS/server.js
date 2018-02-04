@@ -15,12 +15,13 @@ app.post("/post_data", function(req, res) {
   PythonShell.run("run.py", function(pyerr, pyres) {
     if(pyerr) {
       console.log(pyerr);
-      //res.end(JSON.stringify({"status" : "failure"}));
+      res.end(JSON.stringify({"status" : "failure"}));
     }
 
     console.log(pyres);
-
-    res.end(JSON.stringify({"status" : "success"}));
+    res.end(JSON.stringify({
+      "status" : "success"
+    }));
   });
 
 
