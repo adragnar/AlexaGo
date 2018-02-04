@@ -28,7 +28,7 @@ app.post("/post_data", function(req, res) {
           console.log(pyerr);
           res.end(JSON.stringify({"status" : "failure"}));
         }
-
+	console.log(pyres);
         var data = JSON.parse(pyres[0]);
         console.log(data);
         res.end(JSON.stringify({
