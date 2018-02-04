@@ -9,7 +9,7 @@ var port = 3000;
 var app = express();
 
 app.use(bp.urlencoded({extended : true}));
-app.use(bp.json({limit: "50mb"}));
+app.use(bp.json({limit: "100mb"}));
 
 app.post("/post_data", function(req, res) {
   var request_url = url.parse(req.url, true);
