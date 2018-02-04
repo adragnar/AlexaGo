@@ -21,14 +21,21 @@ os.chdir("../yolo-9000/darknet/")
 
 cmd = [
     "./darknet",
-    "detector",
-    "test",
-    "cfg/combine9k.data",
-    "cfg/yolo9000.cfg",
-    "../yolo9000-weights/yolo9000.weights",
-    "data/tmp.png",
+    "detect",
+    "cfg/tiny-yolo.cfg",
+    "tiny-yolo.weights",
+    "data/tmp.jpg",
     "-out",
     "results/tmp-prediction"
+    # "./darknet",
+    # "detector",
+    # "test",
+    # "cfg/combine9k.data",
+    # "cfg/yolo9000.cfg",
+    # "../yolo9000-weights/yolo9000.weights",
+    # "data/tmp.png",
+    # "-out",
+    # "results/tmp-prediction"
 ]
 
 proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
