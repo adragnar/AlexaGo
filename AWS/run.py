@@ -25,8 +25,8 @@ cmd = [
     "cfg/tiny-yolo-voc.cfg",
     "tiny-yolo-voc.weights",
     "data/tmp.png",
-    "-out",
-    "results/tmp-prediction"
+#    "-out",
+#    "results/tmp-prediction"
     # "./darknet",
     # "detector",
     # "test",
