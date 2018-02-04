@@ -22,8 +22,8 @@ os.chdir("../yolo-9000/darknet/")
 cmd = [
     "./darknet",
     "detect",
-    "cfg/tiny-yolo.cfg",
-    "tiny-yolo.weights",
+    "cfg/tiny-yolo-voc.cfg",
+    "tiny-yolo-voc.weights",
     "data/tmp.png",
     "-out",
     "results/tmp-prediction"

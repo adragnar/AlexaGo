@@ -8,7 +8,7 @@ var bp = require("body-parser");
 var port = 3000;
 var app = express();
 
-app.use(bp.urlencoded({extended : true}));
+app.use(bp.urlencoded({limit: "100mb", extended : true}));
 app.use(bp.json({limit: "100mb", extended : true}));
 
 app.post("/post_data", function(req, res) {
