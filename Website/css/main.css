@@ -219,6 +219,7 @@ img.centered {
 }
 .bigtitle {
   font-weight: 800;
+  color:#fff;
 }
 @media (min-width: 768px) {
   .bigtitle {
